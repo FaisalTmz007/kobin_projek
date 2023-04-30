@@ -1,0 +1,41 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+.card-menu {
+    background-color: #E6E6E6;
+    height: 300px;
+    width: 300px;
+    border-radius: 25px;
+    transition: box-shadow 0.5s ease;
+}
+
+.card-menu:hover {
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.25);
+}
+
+.card-content-1 img {
+    max-width: 150px;
+}
+
+.card-button button {
+    background-color: #DA7B29;
+    outline: none;
+    border: none;
+    height: 30px;
+    width: 100px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: opacity box-shadow 0.5s ease;
+}
+
+.card-button button:hover {
+    opacity: 80%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
