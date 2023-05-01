@@ -9,6 +9,9 @@
 @endsection
 
 @section('top-nav')
+    @if (session('edit'))
+        <p class="alert alert-success">{{session('edit')}}</p>
+    @endif
     <div class="container">
         <h1>Profile</h1>
     </div>
@@ -40,7 +43,10 @@
                 {{-- <p name="name">{{Auth::guard('owner')->user()->alamat}}</p> --}}
                 <input class="form-control" type="text" value="{{Auth::guard('owner')->user()->alamat}}" aria-label="Disabled input example" disabled readonly>
             </div>
-            <div class="mt-2 mb-2">
+            <div class="w-100 mt-2 mb-2 d-flex justify-content-between">
+                <a href="{{route('password')}}">
+                    <button type="button" class="btn btn-light">Ganti Password</button>
+                </a>
                 <a href="{{route('ubah-profile')}}">
                     <button type="button" class="btn btn-warning">Ubah</button>
                 </a>
@@ -67,7 +73,10 @@
                 {{-- <p name="name">{{Auth::guard('supplier')->user()->alamat}}</p> --}}
                 <input class="form-control" type="text" value="{{Auth::guard('supplier')->user()->alamat}}" aria-label="Disabled input example" disabled readonly>
             </div>
-            <div class="mt-2 mb-2">
+            <div class="w-100 mt-2 mb-2 d-flex justify-content-between">
+                <a href="{{route('password')}}">
+                    <button type="button" class="btn btn-light">Ganti Password</button>
+                </a>
                 <a href="{{route('ubah-profile')}}">
                     <button type="button" class="btn btn-warning">Ubah</button>
                 </a>

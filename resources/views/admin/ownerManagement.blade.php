@@ -59,6 +59,12 @@
                 </div>
             </div>
         </nav>
+        @if (session('edit'))
+            <p class="alert alert-success">{{session('edit')}}</p>
+        @endif
+        @if (session('password'))
+            <p class="alert alert-success">{{session('password')}}</p>
+        @endif
         <div class="container mt-4">
             <div class="container fw-bold">
                 <h3>Daftar Pemilik Kebun</h3>
@@ -104,6 +110,7 @@
                               </tr>
                             </thead>
                             <tbody id="table-content">
+                            @if ($owners->count() > 0)
                                 @foreach ($owners as $owner)
                                 <tr>
                                   <th scope="row">{{$loop->iteration}}</th>
@@ -112,10 +119,19 @@
                                   <td>
                                     <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#ownerLihat-{{$owner->id_owner}}">Lihat</button>
                                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ownerEdit-{{$owner->id_owner}}">Edit</button>
+                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#ownerPass-{{$owner->id_owner}}">Reset Password</button>
                                   </td>
                                 </tr>
                                 @endforeach
+                            @else
+                            </tr>
+                                <td rowspan="4">
+                                    Data tidak ditemukan
+                                </td>
+                            <tr>
+                            @endif
                             </tbody>
+                            
                           </table>
                     </div>
                 </div>
@@ -159,31 +175,71 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="{{ url('admin/ownerManagement/edit'. $owner->id_owner) }}">
+                        <form method="POST" enctype="multipart/form-data" action="{{ url('admin/ownerManagement/edit'. $owner->id_owner) }}">
                             @csrf
                             <div class="container w-100 m-auto">                            
                                 <div class="mb-3">
                                   <label for="name" class="form-label">Nama Lengkap</label>
-                                  <input type="text" class="form-control" name="name" id="name" value="{{$owner->name}}">
+                                  <input type="text" class="form-control" name="name" id="name" value="{{$owner->name}}" required>
                                 </div>
                                 <div class="mb-3">
                                   <label for="username" class="form-label">Username</label>
-                                  <input type="text" class="form-control" name="username" id="username" value="{{$owner->username}}">
+                                  <input type="text" class="form-control" name="username" id="username" value="{{$owner->username}}" required>
                                 </div>
                                 <div class="mb-3">
                                   <label for="telp" class="form-label">Nomor Telepon</label>
-                                  <input type="text" class="form-control" name="telp" id="telp" value="{{$owner->telp}}">
+                                  <input type="text" class="form-control" name="telp" id="telp" value="{{$owner->telp}}" required>
                                 </div>
                                 <div class="mb-3">
                                   <label for="alamat" class="form-label">Alamat</label>
-                                  <input type="text" class="form-control" name="alamat" id="alamat" value="{{$owner->alamat}}">
+                                  <input type="text" class="form-control" name="alamat" id="alamat" value="{{$owner->alamat}}" required>
                                 </div>
-                                <div id="password_baru" class="mb-3">
+                                <div class="mb-3">
+                                    <div class="col-lg-7 w-100">
+                                        {{-- <input class="form-control my-3 p-2" placeholder="******" name="password" type="password"> --}}
+                                        <input class="form-control my-3 p-2" value="{{ old('gambar') }}" name="gambar" id="gambar" type="file" accept="image/*" required onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <img class="mb-3" src="{{asset($owner->gambar)}}" id="output" width="150">
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+        <!-- Ganti Password Modal -->
+        @foreach ($owners as $owner)
+        <div class="modal fade" id="ownerPass-{{$owner->id_owner}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Reset Password</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {{-- @if($errors->any())
+                        @foreach($errors->all() as $err)
+                            <p class="alert alert-danger">{{ $err }}</p>
+                        @endforeach
+                        @endif --}}
+                        <form method="POST" action="{{ url('admin/ownerManagement/password'. $owner->id_owner) }}">
+                            @csrf
+                            <div class="container w-100 m-auto">                            
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Masukkan Password Baru</label>
+                                  <input type="password" class="form-control" name="password" id="password" value="" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
                         </form>
                     </div>

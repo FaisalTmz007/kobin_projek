@@ -58,6 +58,12 @@
                 </div>
             </div>
         </nav>
+        @if (session('edit'))
+            <p class="alert alert-success">{{session('edit')}}</p>
+        @endif
+        @if (session('password'))
+            <p class="alert alert-success">{{session('password')}}</p>
+        @endif
         <div class="container mt-4">
             <div class="container fw-bold">
                 <h3>Daftar Supplier</h3>
@@ -65,7 +71,7 @@
             <div class="d-flex align-items-center mt-3">
                 <div class="container">
                     <div class="input-group mt-2">
-                        <form action="{{ route('ownerManagement') }}" method="GET">
+                        <form action="{{ route('supplierManagement') }}" method="GET">
                             @csrf
                             <div class="input-group">
                                 <input type="search" name="cari" style="max-width: 200px" class="form-control rounded" placeholder="Cari Pengguna" aria-label="Search" aria-describedby="search-addon" />
@@ -103,6 +109,7 @@
                               </tr>
                             </thead>
                             <tbody id="table-content">
+                                @if ($suppliers->count() > 0)
                                 @foreach ($suppliers as $supplier)
                                 <tr>
                                   <th scope="row">{{$loop->iteration}}</th>
@@ -111,9 +118,18 @@
                                   <td>
                                     <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#supplierLihat-{{$supplier->id_supplier}}">Lihat</button>
                                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#supplierEdit-{{$supplier->id_supplier}}">Edit</button>
+                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#supplierPass-{{$supplier->id_supplier}}">Reset Password</button>
                                   </td>
                                 </tr>
                                 @endforeach
+                                @else
+                                </tr>
+                                    <td></td>
+                                    <td>Data tidak ditemukan</td>
+                                    <td></td>
+                                    <td></td>
+                                <tr>
+                                @endif
                             </tbody>
                           </table>
                     </div>
@@ -158,29 +174,71 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="{{ url('admin/supplierManagement/edit'. $supplier->id_supplier) }}">
+                        <form method="POST" enctype="multipart/form-data" action="{{ url('admin/supplierManagement/edit'. $supplier->id_supplier) }}">
                             @csrf
                             <div class="container w-100 m-auto">                            
                                 <div class="mb-3">
                                   <label for="name" class="form-label">Nama Lengkap</label>
-                                  <input type="text" class="form-control" name="name" id="name" value="{{$supplier->name}}">
+                                  <input type="text" class="form-control" name="name" id="name" value="{{$supplier->name}}" required>
                                 </div>
                                 <div class="mb-3">
                                   <label for="username" class="form-label">Username</label>
-                                  <input type="text" class="form-control" name="username" id="username" value="{{$supplier->username}}">
+                                  <input type="text" class="form-control" name="username" id="username" value="{{$supplier->username}}" required>
                                 </div>
                                 <div class="mb-3">
                                   <label for="telp" class="form-label">Nomor Telepon</label>
-                                  <input type="text" class="form-control" name="telp" id="telp" value="{{$supplier->telp}}">
+                                  <input type="text" class="form-control" name="telp" id="telp" value="{{$supplier->telp}}" required>
                                 </div>
                                 <div class="mb-3">
                                   <label for="alamat" class="form-label">Alamat</label>
-                                  <input type="text" class="form-control" name="alamat" id="alamat" value="{{$supplier->alamat}}">
+                                  <input type="text" class="form-control" name="alamat" id="alamat" value="{{$supplier->alamat}}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="col-lg-7 w-100">
+                                        {{-- <input class="form-control my-3 p-2" placeholder="******" name="password" type="password"> --}}
+                                        <input class="form-control my-3 p-2" value="{{ old('gambar') }}" name="gambar" id="gambar" type="file" accept="image/*" required onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <img class="mb-3" src="{{asset($supplier->gambar)}}" id="output" width="150">
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+        <!-- Ganti Password Modal -->
+        @foreach ($suppliers as $supplier)
+        <div class="modal fade" id="supplierPass-{{$supplier->id_supplier}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Reset Password</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {{-- @if($errors->any())
+                        @foreach($errors->all() as $err)
+                            <p class="alert alert-danger">{{ $err }}</p>
+                        @endforeach
+                        @endif --}}
+                        <form method="POST" action="{{ url('admin/supplierManagement/password'. $supplier->id_supplier) }}">
+                            @csrf
+                            <div class="container w-100 m-auto">                            
+                                <div class="mb-3">
+                                  <label for="password" class="form-label">Masukkan Password Baru</label>
+                                  <input type="password" class="form-control" name="password" id="password" value="" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
                         </form>
                     </div>

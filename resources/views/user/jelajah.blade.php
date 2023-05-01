@@ -34,23 +34,55 @@
       </tr>
     </thead>
     <tbody>
-        @php
-            $i=1;
-        @endphp
-        @foreach ($own as $item)
-        <tr>
-          <th scope="row">{{$i}}</th>
-          <td>{{$item->name}}</td>
-          <td>{{$item->username}}</td>
-          <td>{{$item->alamat}}</td>
-          <td>{{$item->getRole['nama_role']}}</td>
-          <td>
-            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ownerModal-{{$item->id_owner}}">Lihat</button>
-          </td>
-        </tr>
+        @if ($user->count()>0)
+            @php
+                $i=1;
+            @endphp
+            @foreach ($own as $item)
+            <tr>
+            <th scope="row">{{$i}}</th>
+            <td>{{$item->name}}</td>
+            <td>{{$item->username}}</td>
+            <td>{{$item->alamat}}</td>
+            <td>{{$item->getRole['nama_role']}}</td>
+            <td>
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ownerModal-{{$item->id_owner}}">Lihat</button>
+            </td>
+            </tr>
+            @php
+                $i++;
+            @endphp
+            @endforeach
+            @foreach ($supp as $dt)
+            <tr>
+            <th scope="row">{{$i}}</th>
+            <td>{{$dt->name}}</td>
+            <td>{{$dt->username}}</td>
+            <td>{{$dt->alamat}}</td>
+            <td>{{$dt->ambilRole['nama_role']}}</td>
+            <td>
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#supplierModal-{{$dt->id_supplier}}">Lihat</button>
+            </td>
+            </tr>
+            @php
+                $i++;
+            @endphp
+            @endforeach
+        @else
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Data tidak ditemukan</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr> 
+        @endif
+        
+        
         @foreach ($own as $item)
         <!-- Modal -->
-      <div class="modal fade" id="ownerModal-{{$item->id_owner}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="ownerModal-{{$item->id_owner}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-scrollable">
           <div class="modal-content">
               <div class="modal-header">
@@ -78,23 +110,10 @@
               </div>
           </div>
           </div>
-      </div>
+        </div>
         @endforeach
-        @php
-            $i++;
-        @endphp
-        @endforeach
-        @foreach ($supp as $dt)
-        <tr>
-          <th scope="row">{{$i}}</th>
-          <td>{{$dt->name}}</td>
-          <td>{{$dt->username}}</td>
-          <td>{{$dt->alamat}}</td>
-          <td>{{$dt->ambilRole['nama_role']}}</td>
-          <td>
-            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#supplierModal-{{$dt->id_supplier}}">Lihat</button>
-          </td>
-        </tr>
+        
+        
         @foreach ($supp as $dt)
         <!-- Modal -->
         <div class="modal fade" id="supplierModal-{{$dt->id_supplier}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -127,10 +146,7 @@
             </div>
         </div>
         @endforeach
-        @php
-            $i++;
-        @endphp
-        @endforeach
+        
     </tbody>
   </table>
   

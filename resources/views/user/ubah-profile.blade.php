@@ -1,5 +1,9 @@
 @extends('dashboardLayout')
 
+@section('title')
+    Ubah Profile
+@endsection
+
 @section('top-nav')
     <div class="container d-flex">
         <a href="{{ route('profile') }}" style="color: black" class="mt-1 me-2">
@@ -17,24 +21,34 @@
         <div class="mt-4 card-body d-flex flex-column justify-content-around align-items-center">
             @if(Auth::guard('owner')->check())
             <img src="{{ asset(Auth::guard('owner')->user()->gambar) }}" class="rounded-circle" style="width: 80px; height: 80px; object-fit: cover"></img>
-            <form action="{{url('/user/ubah-profile-owner'.Auth::guard('owner')->user()->id_owner)}}" method="POST" class="w-100 mt-3">
+            <form action="{{url('/user/ubah-profile-owner'.Auth::guard('owner')->user()->id_owner)}}" method="POST" enctype="multipart/form-data" class="w-100 mt-3">
                 @csrf
                 <div class="container w-100 m-auto">                            
                     <div class="mb-3">
                         <label for="name" class="form-label">Nama Lengkap</label>
-                        <input type="text" class="form-control" name="name" id="name">
+                        <input type="text" value="{{Auth::guard('owner')->user()->name}}" class="form-control" name="name" id="name" required>
                     </div>
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" name="username" id="username">
+                        <input type="text" value="{{Auth::guard('owner')->user()->username}}" class="form-control" name="username" id="username" required>
                     </div>
                     <div class="mb-3">
                         <label for="telp" class="form-label">Nomor Telepon</label>
-                        <input type="text" class="form-control" name="telp" id="telp">
+                        <input type="text" value="{{Auth::guard('owner')->user()->telp}}" class="form-control" name="telp" id="telp" required>
                     </div>
                     <div class="mb-3">
                         <label for="alamat" class="form-label">Alamat</label>
-                        <input type="text" class="form-control" name="alamat" id="alamat">
+                        <input type="text" value="{{Auth::guard('owner')->user()->alamat}}" class="form-control" name="alamat" id="alamat" required>
+                    </div>
+                    <div class="mb-3">
+                        <div class="col-lg-7 w-100">
+                            {{-- <input class="form-control my-3 p-2" placeholder="******" name="password" type="password"> --}}
+                            <label for="gambar" class="form-label">Foto Profile</label>
+                            <input class="form-control my-3 p-2" value="{{ old('gambar') }}" name="gambar" id="gambar" type="file" accept="image/*" required onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
+                        </div>
+                        {{-- <div class="col-lg-7">
+                            <img class="mb-3" src="{{asset(Auth::guard('owner')->user()->gambar)}}" id="output" width="150">
+                        </div> --}}
                     </div>
                 </div>
                 <div class="mt-4 mb-2 d-flex justify-content-around align-items">
@@ -43,24 +57,34 @@
             </form>
             @elseif(Auth::guard('supplier')->check())
             <img src="{{ asset(Auth::guard('supplier')->user()->gambar) }}" class="rounded-circle" style="width: 80px; height: 80px; object-fit: cover"></img>
-            <form action="{{url('/user/ubah-profile-supplier'.Auth::guard('supplier')->user()->id_supplier)}}" method="POST" class="w-100 mt-3">
+            <form action="{{url('/user/ubah-profile-supplier'.Auth::guard('supplier')->user()->id_supplier)}}" method="POST" enctype="multipart/form-data" class="w-100 mt-3">
                 @csrf
                 <div class="container w-100 m-auto">                            
                     <div class="mb-3">
                         <label for="name" class="form-label">Nama Lengkap</label>
-                        <input type="text" class="form-control" name="name" id="name">
+                        <input type="text" value="{{Auth::guard('supplier')->user()->name}}" class="form-control" name="name" id="name" required>
                     </div>
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" name="username" id="username">
+                        <input type="text" value="{{Auth::guard('supplier')->user()->username}}" class="form-control" name="username" id="username" required>
                     </div>
                     <div class="mb-3">
                         <label for="telp" class="form-label">Nomor Telepon</label>
-                        <input type="text" class="form-control" name="telp" id="telp">
+                        <input type="text" value="{{Auth::guard('supplier')->user()->telp}}" class="form-control" name="telp" id="telp">
                     </div>
                     <div class="mb-3">
                         <label for="alamat" class="form-label">Alamat</label>
-                        <input type="text" class="form-control" name="alamat" id="alamat">
+                        <input type="text" value="{{Auth::guard('supplier')->user()->alamat}}" class="form-control" name="alamat" id="alamat" required>
+                    </div>
+                    <div class="mb-3">
+                        <div class="col-lg-7 w-100">
+                            {{-- <input class="form-control my-3 p-2" placeholder="******" name="password" type="password"> --}}
+                            <label for="gambar" class="form-label">Foto Profile</label>
+                            <input class="form-control my-3 p-2" value="{{ old('gambar') }}" name="gambar" id="gambar" type="file" accept="image/*" required onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
+                        </div>
+                        {{-- <div class="col-lg-7">
+                            <img class="mb-3" src="{{asset(Auth::guard('supplier')->user()->gambar)}}" id="output" width="150">
+                        </div> --}}
                     </div>
                 </div>
                 <div class="mt-2 mb-2 d-flex justify-content-around align-items">

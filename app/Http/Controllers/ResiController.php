@@ -20,10 +20,7 @@ class ResiController extends Controller
 
         // dd($response);
         // echo $response[0]['code'];
-
-
-
-        return view('user/cek-resi', ['ekspedisi' => $response, 'summary' => ['awb'=>'', 'date'=>''], 'detail' => ['shipper'=>'', 'receiver'=>''], 'history' => [['date'=>'', 'desc'=>'']]]);
+        return view('user/cek-resi', ['ekspedisi' => $response, 'response_status' => 0]);
     }
 
     public function cekResi(Request $request)
@@ -46,15 +43,17 @@ class ResiController extends Controller
             
         // ]);
 
+        $response_status = $response['status'];
+
         // dd($response->json());
-
-        $summary = $response['data']['summary'];
-        $detail = $response['data']['detail'];
-        $history = $response['data']['history'];
-
-
-        // dd($response->all());
-
-        return view('user/cek-resi', ['ekspedisi' => $responseCourier, 'summary' => $summary, 'detail' => $detail, 'history' => $history]);
+        if ($response_status == 200) {
+            # code...
+            $summary = $response['data']['summary'];
+            $detail = $response['data']['detail'];
+            $history = $response['data']['history'];
+            return view('user/cek-resi', ['response_status' => $response_status ,'ekspedisi' => $responseCourier, 'summary' => $summary, 'detail' => $detail, 'history' => $history]);
+        } elseif($response_status == 400) {
+            return view('user/cek-resi', ['response_status' => $response_status, 'ekspedisi' => $responseCourier,]);
+        }
     }
 }

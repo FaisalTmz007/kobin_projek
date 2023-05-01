@@ -5,6 +5,11 @@
 @endsection
 
 @section('top-nav')
+    @if(session('loginowner'))
+    <p class="alert alert-success">{{ session('loginowner') }}</p>
+    @elseif(session('loginsupplier'))
+    <p class="alert alert-success">{{ session('loginsupplier') }}</p>
+    @endif
     <h2 class="page-title">
     {{-- Selamat Datang, {{ Auth::guard('supplier')->user()->name }} --}}
     @if(Auth::guard('owner')->check())

@@ -14,17 +14,21 @@
 <div class="col-lg-7">
     <h2 class="fw-bold py-3">Selamat Datang!</h2>
     <h5 class="pb-3">Anda berada di halaman login User</h5>
+    <div class="d-flex">
+        <a href="{{route('login_admin')}}" class="admin-selection"><button>Admin</button></a>
+        <a href="{{route('login')}}" class="user-selection"><button>User</button></a>
+    </div>
     <form method="POST" action="{{ route('login.action') }}">
         @csrf
         <div class="form-row w-100">
             <div class="col-lg-7 w-100">
-                <input class="form-control my-3 p-2" placeholder="Username" name="username" type="text" value="{{ old('username') }}">
+                <input class="form-control my-3 p-2" placeholder="Username" name="username" type="text" value="{{ old('username') }}" required>
             </div>
         </div>
         <div class="form-row w-100">
             <div class="col-lg-7 w-100">
                 {{-- <input class="form-control my-3 p-2" placeholder="******" name="password" type="password"> --}}
-                <input class="form-control my-3 p-2" placeholder="Password" name="password" type="password">
+                <input class="form-control my-3 p-2" placeholder="Password" name="password" type="password" required>
             </div>
         </div>
         <div class="form-row w-100">

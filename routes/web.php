@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('user/login');
 });
 
 Route::get('user/jelajah', [JelajahController::class, 'show'], function () {
@@ -33,6 +33,9 @@ Route::post('register', [AuthController::class, 'register_action'])->name('regis
 
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'login_action'])->name('login.action');
+
+Route::get('password', [AuthController::class, 'password'])->name('password');
+Route::post('password', [AuthController::class, 'password_action'])->name('password.action');
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
@@ -72,6 +75,9 @@ Route::get('admin/supplierManagement', [UserManagementController::class, 'getSup
 
 //edit
 Route::match(['get', 'post'], 'admin/ownerManagement/edit{id}', [UserManagementController::class, 'editOwner']);
+Route::match(['get', 'post'], 'admin/ownerManagement/password{id}', [UserManagementController::class, 'passwordOwner']);
+
 Route::match(['get', 'post'], 'admin/supplierManagement/edit{id}', [UserManagementController::class, 'editSupplier']);
+Route::match(['get', 'post'], 'admin/supplierManagement/password{id}', [UserManagementController::class, 'passwordSupplier']);
 
 Route::get('admin/logout', [AdminController::class, 'logout'])->name('adminlogout');

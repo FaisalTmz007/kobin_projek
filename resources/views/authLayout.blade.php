@@ -23,6 +23,37 @@
         color: #FFFFFF;
         border-radius: 8px;
       } 
+      .admin-selection button {
+        border: 1px solid #DA7B29;
+        background-color: white;
+        color: #DA7B29;
+        font-weight: 600;
+        height: 40px;
+        width: 100px;
+        border-radius: 60px;
+        margin-right: 15px;
+        transition: all 0.5s ease-out;
+      }
+
+      .admin-selection button:hover {
+        background-color: #DA7B29;
+        color: white;
+      }
+
+      .user-selection button {
+        border: none;
+        background-color: #DA7B29;
+        color: white;
+        font-weight: 600;
+        height: 40px;
+        width: 100px;
+        margin-right: 15px;
+        border-radius: 60px;
+        transition: all 0.5s ease-out;
+      }
+      .user-selection button:hover {
+        box-shadow: 1px 1px 1px black;
+      }
     </style>
   </head>
   <body>

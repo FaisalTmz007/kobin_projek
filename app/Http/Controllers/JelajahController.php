@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Owner;
 use App\Models\Supplier;
+use Illuminate\Support\Facades\Redis;
 
 class JelajahController extends Controller
 {
@@ -19,6 +20,14 @@ class JelajahController extends Controller
             $supplier = Supplier::with('ambilRole')->get();
         }
 
-        return view('user/jelajah', ['own' => $owner, 'supp' => $supplier]);
+        // $user = array();
+        $user = $owner->merge($supplier);
+        // $user->json_encode();
+        // dd($user);
+
+        // $data = $owner . $supplier;
+        // dd($data);
+
+        return view('user/jelajah', ['user' => $user, 'own' => $owner, 'supp' => $supplier]);
     }
 }
