@@ -99,10 +99,10 @@
                           <p class="mt-2" name="name" id="name" >{{$item->name}}</p>
                           <label for="username"><b>Username</b></label>
                           <p class="mt-2" name="username" id="username" >{{$item->username}}</p>
-                          <label for="telp"><b>Nomor Telepon</b></label>
-                          <p class="mt-2" name="telp" id="telp">{{$item->telp}}</p>
                           <label for="alamat"><b>Alamat</b></label>
                           <p class="mt-2" name="alamat" id="alamat">{{$item->alamat}}</p>
+                          <label for="telp"><b>Nomor Telepon</b></label>
+                          <p class="mt-2" name="telp" id="telp">{{$item->telp}}</p>
                           <label for="role"><b>Role</b></label>
                           <p class="mt-2" name="role" id="role">{{$item->getRole['nama_role']}}</p>
                       </div>
@@ -133,10 +133,10 @@
                                 <p class="mt-2" name="supplierName" id="supplierName" >{{$dt->name}}</p>
                                 <label for="supplierUsername"><b>Username</b></label>
                                 <p class="mt-2" name="supplierUsername" id="supplierUsername" >{{$dt->username}}</p>
-                                <label for="supplierTelp"><b>Nomor Telepon</b></label>
-                                <p class="mt-2" name="supplierTelp" id="supplierTelp">{{$dt->telp}}</p>
                                 <label for="supplierAlamat"><b>Alamat</b></label>
                                 <p class="mt-2" name="supplierAlamat" id="supplierAlamat">{{$dt->alamat}}</p>
+                                <label for="supplierTelp"><b>Nomor Telepon</b></label>
+                                <p class="mt-2" name="supplierTelp" id="supplierTelp">{{$dt->telp}}</p>
                                 <label for="supplierRole"><b>Role</b></label>
                                 <p class="mt-2" name="supplierRole" id="supplierRole">{{$dt->ambilRole['nama_role']}}</p>
                             </div>

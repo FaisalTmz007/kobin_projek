@@ -104,7 +104,7 @@
                             <thead>
                               <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Full Name</th>
+                                <th scope="col">Nama</th>
                                 <th scope="col">Username</th>
                                 <th scope="col">Aksi</th>
                               </tr>
@@ -154,10 +154,10 @@
                             <div>
                                 <label for="ownerUsername"><b>Username</b></label>
                                 <p name="ownerUsername" id="ownerUsername" >{{$owner->username}}</p>
-                                <label for="ownerTelp"><b>Nomor Telepon</b></label>
-                                <p name="ownerTelp" id="ownerTelp">{{$owner->telp}}</p>
                                 <label for="ownerAlamat"><b>Alamat</b></label>
                                 <p name="ownerAlamat" id="ownerAlamat">{{$owner->alamat}}</p>
+                                <label for="ownerTelp"><b>Nomor Telepon</b></label>
+                                <p name="ownerTelp" id="ownerTelp">{{$owner->telp}}</p>
                             </div>
                         </div>
                     </div>
@@ -187,17 +187,18 @@
                                   <input type="text" class="form-control" name="username" id="username" value="{{$owner->username}}" required>
                                 </div>
                                 <div class="mb-3">
-                                  <label for="telp" class="form-label">Nomor Telepon</label>
-                                  <input type="text" class="form-control" name="telp" id="telp" value="{{$owner->telp}}" required>
-                                </div>
-                                <div class="mb-3">
                                   <label for="alamat" class="form-label">Alamat</label>
                                   <input type="text" class="form-control" name="alamat" id="alamat" value="{{$owner->alamat}}" required>
                                 </div>
                                 <div class="mb-3">
+                                  <label for="telp" class="form-label">Nomor Telepon</label>
+                                  <input type="text" class="form-control" name="telp" id="telp" value="{{$owner->telp}}" required>
+                                </div>
+                                <div class="mb-3">
                                     <div class="col-lg-7 w-100">
                                         {{-- <input class="form-control my-3 p-2" placeholder="******" name="password" type="password"> --}}
-                                        <input class="form-control my-3 p-2" value="{{ old('gambar') }}" name="gambar" id="gambar" type="file" accept="image/*" required onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
+                                        <label for="gambar" class="form-label">Foto Profil</label>
+                                        <input class="form-control mb-3 p-2" value="{{ old('gambar') }}" name="gambar" id="gambar" type="file" accept="image/*" required onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
                                     </div>
                                     <div class="col-lg-7">
                                         <img class="mb-3" src="{{asset($owner->gambar)}}" id="output" width="150">

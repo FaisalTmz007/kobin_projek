@@ -103,7 +103,7 @@
                             <thead>
                               <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Full Name</th>
+                                <th scope="col">Nama</th>
                                 <th scope="col">Username</th>
                                 <th scope="col">Aksi</th>
                               </tr>
@@ -153,10 +153,10 @@
                             <div>
                                 <label for="supplierUsername"><b>Username</b></label>
                                 <p name="supplierUsername" id="supplierUsername" >{{$supplier->username}}</p>
-                                <label for="supplierTelp"><b>Nomor Telepon</b></label>
-                                <p name="supplierTelp" id="supplierTelp">{{$supplier->telp}}</p>
                                 <label for="supplierAlamat"><b>Alamat</b></label>
                                 <p name="supplierAlamat" id="supplierAlamat">{{$supplier->alamat}}</p>
+                                <label for="supplierTelp"><b>Nomor Telepon</b></label>
+                                <p name="supplierTelp" id="supplierTelp">{{$supplier->telp}}</p>
                             </div>
                         </div>
                     </div>
@@ -186,17 +186,18 @@
                                   <input type="text" class="form-control" name="username" id="username" value="{{$supplier->username}}" required>
                                 </div>
                                 <div class="mb-3">
-                                  <label for="telp" class="form-label">Nomor Telepon</label>
-                                  <input type="text" class="form-control" name="telp" id="telp" value="{{$supplier->telp}}" required>
-                                </div>
-                                <div class="mb-3">
                                   <label for="alamat" class="form-label">Alamat</label>
                                   <input type="text" class="form-control" name="alamat" id="alamat" value="{{$supplier->alamat}}" required>
                                 </div>
                                 <div class="mb-3">
+                                  <label for="telp" class="form-label">Nomor Telepon</label>
+                                  <input type="text" class="form-control" name="telp" id="telp" value="{{$supplier->telp}}" required>
+                                </div>
+                                <div class="mb-3">
                                     <div class="col-lg-7 w-100">
                                         {{-- <input class="form-control my-3 p-2" placeholder="******" name="password" type="password"> --}}
-                                        <input class="form-control my-3 p-2" value="{{ old('gambar') }}" name="gambar" id="gambar" type="file" accept="image/*" required onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
+                                        <label for="gambar" class="form-label">Foto Profil</label>
+                                        <input class="form-control mb-3 p-2" value="{{ old('gambar') }}" name="gambar" id="gambar" type="file" accept="image/*" required onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
                                     </div>
                                     <div class="col-lg-7">
                                         <img class="mb-3" src="{{asset($supplier->gambar)}}" id="output" width="150">

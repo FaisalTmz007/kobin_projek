@@ -36,15 +36,15 @@
                 <form method="POST" action="{{ route('password.action') }}">
                     @csrf
                     <div class="mb-3">
-                        <label>Old Password <span class="text-danger"></span></label>
+                        <label>Password Lama<span class="text-danger"></span></label>
                         <input class="form-control" name="old_password" type="password" required>
                     </div>
                     <div class="mb-3">
-                        <label>New Password <span class="text-danger"></span></label>
+                        <label>Password Baru<span class="text-danger"></span></label>
                         <input class="form-control" name="new_password" type="password" required>
                     </div>
                     <div class="mb-3">
-                        <label>New Password Confirmation<span class="text-danger"></span></label>
+                        <label>Konfirmasi Password Baru<span class="text-danger"></span></label>
                         <input class="form-control" name="new_password_confirmation" type="password" required>
                     </div>
                     <div class="mb-3 d-flex justify-content-end">

@@ -25,7 +25,7 @@
                 @csrf
                 <div class="container w-100 m-auto">                            
                     <div class="mb-3">
-                        <label for="name" class="form-label">Nama Lengkap</label>
+                        <label for="name" class="form-label">Nama</label>
                         <input type="text" value="{{Auth::guard('owner')->user()->name}}" class="form-control" name="name" id="name" required>
                     </div>
                     <div class="mb-3">
@@ -33,12 +33,12 @@
                         <input type="text" value="{{Auth::guard('owner')->user()->username}}" class="form-control" name="username" id="username" required>
                     </div>
                     <div class="mb-3">
-                        <label for="telp" class="form-label">Nomor Telepon</label>
-                        <input type="text" value="{{Auth::guard('owner')->user()->telp}}" class="form-control" name="telp" id="telp" required>
-                    </div>
-                    <div class="mb-3">
                         <label for="alamat" class="form-label">Alamat</label>
                         <input type="text" value="{{Auth::guard('owner')->user()->alamat}}" class="form-control" name="alamat" id="alamat" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="telp" class="form-label">Nomor Telepon</label>
+                        <input type="text" value="{{Auth::guard('owner')->user()->telp}}" class="form-control" name="telp" id="telp" required>
                     </div>
                     <div class="mb-3">
                         <div class="col-lg-7 w-100">
@@ -61,7 +61,7 @@
                 @csrf
                 <div class="container w-100 m-auto">                            
                     <div class="mb-3">
-                        <label for="name" class="form-label">Nama Lengkap</label>
+                        <label for="name" class="form-label">Nama</label>
                         <input type="text" value="{{Auth::guard('supplier')->user()->name}}" class="form-control" name="name" id="name" required>
                     </div>
                     <div class="mb-3">
@@ -69,12 +69,12 @@
                         <input type="text" value="{{Auth::guard('supplier')->user()->username}}" class="form-control" name="username" id="username" required>
                     </div>
                     <div class="mb-3">
-                        <label for="telp" class="form-label">Nomor Telepon</label>
-                        <input type="text" value="{{Auth::guard('supplier')->user()->telp}}" class="form-control" name="telp" id="telp">
-                    </div>
-                    <div class="mb-3">
                         <label for="alamat" class="form-label">Alamat</label>
                         <input type="text" value="{{Auth::guard('supplier')->user()->alamat}}" class="form-control" name="alamat" id="alamat" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="telp" class="form-label">Nomor Telepon</label>
+                        <input type="text" value="{{Auth::guard('supplier')->user()->telp}}" class="form-control" name="telp" id="telp">
                     </div>
                     <div class="mb-3">
                         <div class="col-lg-7 w-100">
