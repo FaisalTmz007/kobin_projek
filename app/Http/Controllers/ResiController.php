@@ -14,7 +14,7 @@ class ResiController extends Controller
 
         $response = Http::get('https://api.binderbyte.com/v1/list_courier', [
             // 'api_key' => 'ad0fc72a8595a4f400df6beb7bc264fb166a9db3cce5131be5d5a2af2bf49490',
-            'api_key' => '2b4e335ede428e0372f55ef2a7184cda1073cd27bfa2a8c07bc71d627962a932',
+            'api_key' => 'b28292a23dcfb39a895ba1bd0dffa1c32491e00de25c09e991f9171048649ef6',
         ])->collect();
         // sleep(5);
 
@@ -27,13 +27,13 @@ class ResiController extends Controller
     {
         $responseCourier = Http::get('https://api.binderbyte.com/v1/list_courier', [
             // 'api_key' => 'ad0fc72a8595a4f400df6beb7bc264fb166a9db3cce5131be5d5a2af2bf49490',
-            'api_key' => '2b4e335ede428e0372f55ef2a7184cda1073cd27bfa2a8c07bc71d627962a932',
+            'api_key' => 'b28292a23dcfb39a895ba1bd0dffa1c32491e00de25c09e991f9171048649ef6',
         ])->collect();
 
 
         $response = Http::get('https://api.binderbyte.com/v1/track', [
             // 'api_key' => 'ad0fc72a8595a4f400df6beb7bc264fb166a9db3cce5131be5d5a2af2bf49490',
-            'api_key' => '2b4e335ede428e0372f55ef2a7184cda1073cd27bfa2a8c07bc71d627962a932',
+            'api_key' => 'b28292a23dcfb39a895ba1bd0dffa1c32491e00de25c09e991f9171048649ef6',
             'courier' => $request->courier,
             'awb' => $request->awb,
         ]);
