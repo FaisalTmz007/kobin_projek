@@ -7,14 +7,18 @@
 @section('top-nav')
     <div class="d-flex justify-content-evenly">
         <div class="button-navigation">
-            <button>
-                Cek Ongkir
-            </button>
+            <a href="{{ route('resi') }}">
+                <button>
+                    Cek Resi
+                </button>
+            </a>
         </div>
         <div class="button-navigation">
-            <button>
-                Cek Resi
-            </button>
+            <a href="{{ route('ongkir') }}">
+                <button>
+                    Cek Ongkir
+                </button>
+            </a>
         </div>
     </div>
 @endsection
@@ -25,7 +29,7 @@
         <div class="container w-100 col" style="background-color: #F4F4F4; padding: 0px 30px 30px 30px; border-radius: 10px">
         <form action="{{ route('cekOngkir') }}" method="POST" >
             @csrf
-            <h2 class="fw-bolder mt-3">Cek Harga Ongkir</h2>
+            <h2 class="fw-bolder mt-3">Hasil</h2>
             <div class="mt-4">
                 <label for="origin"><b>Kota Asal</b></label>
                 <select name="origin" id="origin" class="form-control" required style="background-color: #E6E6E6; height: 40px; margin-top: 10px">

@@ -121,11 +121,11 @@
                 <div class="dropdown-menu">
                   <div class="dropdown-menu-columns">
                     <div class="dropdown-menu-column">
+						<a class="dropdown-item" href="{{ route('resi') }}">
+                            Cek Resi
+                        </a>
                         <a class="dropdown-item" href="{{ route('ongkir') }}">
                             Cek Ongkir
-                        </a>
-                        <a class="dropdown-item" href="{{ route('resi') }}">
-                            Cek Resi
                         </a>
                     </div>
                   </div>

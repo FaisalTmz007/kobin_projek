@@ -72,7 +72,7 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td>Data tidak ditemukan</td>
+                <td>Username tidak ditemukan.</td>
                 <td></td>
                 <td></td>
                 <td></td>

@@ -7,14 +7,18 @@
 @section('top-nav')
 <div class="d-flex justify-content-evenly">
     <div class="button-navigation">
-        <button>
-            Cek Ongkir
-        </button>
+        <a href="{{ route('resi') }}">
+            <button>
+                Cek Resi
+            </button>
+        </a>
     </div>
     <div class="button-navigation">
-        <button>
-            Cek Resi
-        </button>
+        <a href="{{ route('ongkir') }}">
+            <button>
+                Cek Ongkir
+            </button>
+        </a>
     </div>
 </div>
 @endsection

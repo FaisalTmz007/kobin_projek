@@ -125,9 +125,10 @@
                                 @endforeach
                             @else
                             </tr>
-                                <td rowspan="4">
-                                    Data tidak ditemukan
-                                </td>
+                                <td></td>
+                                <td>Username tidak tersedia.</td>
+                                <td></td>
+                                <td></td>
                             <tr>
                             @endif
                             </tbody>
@@ -179,7 +180,7 @@
                             @csrf
                             <div class="container w-100 m-auto">                            
                                 <div class="mb-3">
-                                  <label for="name" class="form-label">Nama Lengkap</label>
+                                  <label for="name" class="form-label">Nama</label>
                                   <input type="text" class="form-control" name="name" id="name" value="{{$owner->name}}" required>
                                 </div>
                                 <div class="mb-3">
@@ -206,8 +207,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                <button type="button" class="btn btn-outline-secondary" style="color: black" data-bs-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-warning fw-bold" style="color: white;">Simpan</button>
                             </div>
                         </form>
                     </div>
@@ -239,8 +240,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                <button type="button" class="btn btn-outline-secondary" style="color: black" data-bs-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-warning fw-bold" style="color: white;">Simpan</button>
                             </div>
                         </form>
                     </div>
