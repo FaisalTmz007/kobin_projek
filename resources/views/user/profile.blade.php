@@ -12,6 +12,11 @@
     @if (session('edit'))
         <p class="alert alert-success">{{session('edit')}}</p>
     @endif
+    @if ($errors->any())
+        @foreach ($errors->all() as $err)
+          <p class="alert alert-danger">{{ $err }}</p>
+        @endforeach
+    @endif
     <div class="container">
         <h1>Profile</h1>
     </div>

@@ -12,8 +12,8 @@ class JelajahController extends Controller
     public function show(Request $request) {
 
         if($request->has('search')){
-            $owner = Owner::where('name', 'LIKE', '%' .$request->search.'%')->with('getRole')->get();
-            $supplier = Supplier::where('name', 'LIKE', '%' .$request->search.'%')->with('ambilRole')->get();
+            $owner = Owner::where('username', 'LIKE', '%' .$request->search.'%')->with('getRole')->get();
+            $supplier = Supplier::where('username', 'LIKE', '%' .$request->search.'%')->with('ambilRole')->get();
         }
         else{
             $owner = Owner::with('getRole')->get();

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CoffeePriceController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\JelajahController;
 use App\Http\Controllers\OngkirController;
@@ -34,20 +35,19 @@ Route::post('register', [AuthController::class, 'register_action'])->name('regis
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'login_action'])->name('login.action');
 
-Route::get('password', [AuthController::class, 'password'])->name('password');
-Route::post('password', [AuthController::class, 'password_action'])->name('password.action');
-
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('user/home', function () {
     return view('user/home');
 })->middleware('auth:owner,supplier')->name('home');
 
-Route::get('/cek-ongkir', [OngkirController::class, 'index'])->middleware('auth:owner,supplier')->name('ongkir');
-Route::post('/cek-ongkir', [OngkirController::class, 'cekOngkir'])->middleware('auth:owner,supplier')->name('cekOngkir');
+Route::get('/cek-ongkir', [OngkirController::class, 'index'])->name('ongkir');
+Route::post('/cek-ongkir', [OngkirController::class, 'cekOngkir'])->name('cekOngkir');
 
-Route::get('/cek-resi', [ResiController::class, 'index'])->middleware('auth:owner,supplier')->name('resi');
-Route::post('/cek-resi', [ResiController::class, 'cekResi'])->middleware('auth:owner,supplier')->name('cekResi');
+Route::get('/cek-resi', [ResiController::class, 'index'])->name('resi');
+Route::post('/cek-resi', [ResiController::class, 'cekResi'])->name('cekResi');
+
+Route::get('/harga-kopi', [CoffeePriceController::class, 'getPrice'])->middleware('auth:owner,supplier')->name('harga-kopi');
 
 Route::get('/user/profile', function() {return view('user/profile');})->middleware('auth:owner,supplier')->name('profile');
 
@@ -55,6 +55,9 @@ Route::get('/user/ubah-profile', [ProfileController::class, 'index'])->middlewar
 
 Route::post('/user/ubah-profile-owner{id}', [ProfileController::class, 'editOwner'])->middleware('auth:owner,supplier');
 Route::post('/user/ubah-profile-supplier{id}', [ProfileController::class, 'editSupplier'])->middleware('auth:owner,supplier');
+
+Route::get('password', [ProfileController::class, 'password'])->name('password');
+Route::post('password', [ProfileController::class, 'password_action'])->name('password.action');
 
 // Route::get('user/jelajah', [JelajahController::class, 'show']);
 

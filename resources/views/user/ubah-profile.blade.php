@@ -5,6 +5,11 @@
 @endsection
 
 @section('top-nav')
+    @if ($errors->any())
+        @foreach ($errors->all() as $err)
+          <p class="alert alert-danger">{{ $err }}</p>
+        @endforeach
+    @endif
     <div class="container d-flex">
         <a href="{{ route('profile') }}" style="color: black" class="mt-1 me-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">

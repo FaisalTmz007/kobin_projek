@@ -19,7 +19,7 @@ class UserManagementController extends Controller
     public function getOwner(Request $request){
         if ($request->has('cari')) {
             # code...
-            $owners = Owner::where('name', 'LIKE', '%' .$request->cari.'%')->get();
+            $owners = Owner::where('username', 'LIKE', '%' .$request->cari.'%')->get();
 
             // dd($owners);
         } else {
@@ -33,7 +33,7 @@ class UserManagementController extends Controller
     public function getSupplier(Request $request){
         if ($request->has('cari')) {
             # code...
-            $suppliers = Supplier::where('name', 'LIKE', '%' .$request->cari.'%')->get();
+            $suppliers = Supplier::where('username', 'LIKE', '%' .$request->cari.'%')->get();
 
             // dd($owners);
             // dd($suppliers);
