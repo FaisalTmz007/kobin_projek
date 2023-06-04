@@ -12,13 +12,9 @@
 
 @section('auth-form')
 <div class="col-lg-7">
-    <h2 class="fw-bold py-3">Selamat Datang!</h2>
-    <h5 class="pb-3">Anda berada di halaman login User</h5>
-    <div class="d-flex">
-        <a href="{{route('login_admin')}}" class="admin-selection"><button>Admin</button></a>
-        <a href="{{route('login')}}" class="user-selection"><button>User</button></a>
-    </div>
-    <form method="POST" action="{{ route('login.action') }}">
+    <h2 class="fw-bold py-3">Reset Password</h2>
+    <h6 class="pb-3">Masukkan data yang sesuai untuk mengajukan reset password</h6>
+    <form method="POST" action="{{ route('createReset') }}">
         @csrf
         <div class="form-row w-100">
             <div class="col-lg-7 w-100">
@@ -27,21 +23,26 @@
         </div>
         <div class="form-row w-100">
             <div class="col-lg-7 w-100">
-                {{-- <input class="form-control my-3 p-2" placeholder="******" name="password" type="password"> --}}
-                <input class="form-control my-3 p-2" placeholder="Password" name="password" type="password" required>
+                <input class="form-control my-3 p-2" placeholder="Permintaan Password" name="password" type="password" value="{{ old('password') }}" required>
             </div>
         </div>
         <div class="form-row w-100">
             <div class="col-lg-7 w-100">
-                <button class="btn-auth">Login</button>
+                <select class="form-select" placeholder="Pilih Role" id="role" name="role" aria-label="Default select example">
+                    <option selected>Pilih Role</option>
+                <option value="2">Pemilik Kebun</option>
+                <option value="3">Supplier</option>
+              </select>
             </div>
         </div>
         <div class="form-row w-100">
             <div class="col-lg-7 w-100">
-                <p style="text-align: center">Belum punya akun? <a style="text-decoration: none; color: #DA7B29" href="{{ route('register_user') }}"><b>Register</b></a></p>
+                <button class="btn-auth my-3 p-2">Reset Password</button>
             </div>
-            <div>
-                <p style="text-align: center"><a style="text-decoration: none; color: #DA7B29"  href="{{ route('resetPassword') }}">Lupa Password</a></p>
+        </div>
+        <div class="form-row w-100">
+            <div class="col-lg-7 w-100">
+                <p style="text-align: center">Kembali ke halaman <a style="text-decoration: none; color: #DA7B29" href="{{ route('login') }}"><b>Login</b></a></p>
             </div>
         </div>
     </form>

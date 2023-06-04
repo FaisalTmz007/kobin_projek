@@ -36,7 +36,7 @@
                     <button>Buka</button>
                 </div>
             </a>
-            <a href="" class="card-menu container d-flex flex-column justify-content-center align-items-center text-decoration-none" style="color: #000000">
+            <a href="{{ route('premium-manager') }}" class="card-menu container d-flex flex-column justify-content-center align-items-center text-decoration-none" style="color: #000000">
                 <div class="card-content-1">
                     <img src="{{asset("./assets/img/premiumManagement.png")}}" alt="">
                     <p class="text-center mt-3 fw-bold">Kelola Fitur Premium</p>

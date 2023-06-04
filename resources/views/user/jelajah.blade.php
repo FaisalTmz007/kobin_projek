@@ -39,6 +39,9 @@
                 $i=1;
             @endphp
             @foreach ($own as $item)
+            @if ($item->username == 'NULL')
+                @continue
+            @endif
             <tr>
             <th scope="row">{{$i}}</th>
             <td>{{$item->name}}</td>
@@ -54,6 +57,9 @@
             @endphp
             @endforeach
             @foreach ($supp as $dt)
+            @if ($dt->username == 'NULL')
+                @continue
+            @endif
             <tr>
             <th scope="row">{{$i}}</th>
             <td>{{$dt->name}}</td>
@@ -72,7 +78,7 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td>Username tidak ditemukan.</td>
+                <td>Username tidak tersedia.</td>
                 <td></td>
                 <td></td>
                 <td></td>

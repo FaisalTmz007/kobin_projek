@@ -122,17 +122,17 @@
                   <div class="dropdown-menu-columns">
                     <div class="dropdown-menu-column">
 						<a class="dropdown-item" href="{{ route('resi') }}">
-                            Cek Resi
+                            Tracking Pengiriman
                         </a>
                         <a class="dropdown-item" href="{{ route('ongkir') }}">
-                            Cek Ongkir
+                            Perkiraan Ongkir
                         </a>
                     </div>
                   </div>
                 </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./form-elements.html" style="color: white">
+                <a class="nav-link" href="{{ route('kas.index') }}" style="color: white">
                   <span style="color: white" class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wallet" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 						<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -182,17 +182,6 @@
               </li>
               <li style="bottom: 0; left: 0; position: absolute; width: 100%;">
 				<div class="mb-2">
-                    <a class="nav-link" href="" style="color: white">
-                        <span style="color: white" class="nav-link-icon d-md-none d-lg-inline-block">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-help-circle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
-                                <path d="M12 16v.01"></path>
-                                <path d="M12 13a2 2 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483"></path>
-                             </svg>
-                        </span>
-                         <span class="nav-link-title">Bantuan</span>
-                    </a>
                     <a class="nav-link" href="{{ route('logout') }}" style="color: white">
                         <span style="color: white" class="nav-link-icon d-md-none d-lg-inline-block">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -872,6 +861,20 @@
 		month = month_name[month] + " " + year;
 		document.getElementById('onlymonth').innerHTML=month;
 	</script>
+	<script>
+		function formBukti() {
+			var x = document.getElementById("qr");
+			var y = document.getElementById("form");
+			if (x.style.display === "none") {
+				x.style.display = "flex";
+				y.style.display = "none";
+			} else {
+				x.style.display = "none";
+				y.style.display = "flex";
+			}
+		}
+	</script>
+	
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

@@ -56,7 +56,8 @@
                         </div> --}}
                     </div>
                 </div>
-                <div class="mt-4 mb-2 d-flex justify-content-around align-items">
+                <div class="mt-4 mb-2 d-flex justify-content-between align-items">
+                    <a href="{{ url()->previous() }}" class="btn btn-default mt-2">Back</a>
                     <button type="submit" class="btn btn-warning">Simpan</button>
                 </div>
             </form>
@@ -92,7 +93,8 @@
                         </div> --}}
                     </div>
                 </div>
-                <div class="mt-2 mb-2 d-flex justify-content-around align-items">
+                <div class="mt-2 mb-2 d-flex justify-content-between align-items">
+                    <a href="{{ url()->previous() }}" class="btn btn-default mt-2">Back</a>
                     <button type="submit" class="btn btn-warning">Simpan</button>
                 </div>
             </form>

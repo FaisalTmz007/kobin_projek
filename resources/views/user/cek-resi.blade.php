@@ -5,22 +5,22 @@
 @endsection
 
 @section('top-nav')
-<div class="d-flex justify-content-evenly">
-    <div class="button-navigation">
-        <a href="{{ route('resi') }}">
-            <button>
-                Cek Resi
-            </button>
-        </a>
+    <div class="d-flex justify-content-evenly">
+        <div class="button-navigation">
+            <a href="{{ route('resi') }}">
+                <button>
+                    Tracking Pengiriman
+                </button>
+            </a>
+        </div>
+        <div class="button-navigation">
+            <a href="{{ route('ongkir') }}">
+                <button>
+                    Perkiraan Ongkir
+                </button>
+            </a>
+        </div>
     </div>
-    <div class="button-navigation">
-        <a href="{{ route('ongkir') }}">
-            <button>
-                Cek Ongkir
-            </button>
-        </a>
-    </div>
-</div>
 @endsection
 
 @section('content')

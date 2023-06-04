@@ -117,4 +117,8 @@ class AuthController extends Controller
         return redirect('login');
 
     }
+
+    public function resetPassword(Request $request){
+        return view('user/reset-password');
+    }
 }

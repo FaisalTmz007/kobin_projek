@@ -60,7 +60,7 @@
         </div>
         <div class="form-row w-100">
             <div class="col-lg-7 w-100">
-                <button class="btn-auth">Register</button>
+                <button class="btn-auth">Daftar</button>
             </div>
         </div>
         <div class="form-row w-100">
