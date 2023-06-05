@@ -59,11 +59,8 @@
                 </div>
             </div>
         </nav>
-        @if (session('edit'))
-            <p class="alert alert-success">{{session('edit')}}</p>
-        @endif
-        @if (session('password'))
-            <p class="alert alert-success">{{session('password')}}</p>
+        @if(session('success'))
+          <p class="alert alert-success">{{ session('success') }}</p>
         @endif
         <div class="container mt-4">
             <div class="container fw-bold">
@@ -76,7 +73,7 @@
                             @csrf
                             <div class="input-group">
                                 <input type="search" name="cari" style="max-width: 200px" class="form-control rounded" placeholder="Cari Pengguna" aria-label="Search" aria-describedby="search-addon" />
-                                <button type="button" class="btn btn-warning">Cari</button>
+                                <button type="submit" class="btn btn-warning">Cari</button>
                             </div>
                         </form>
                     </div>
@@ -208,7 +205,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" style="color: black" data-bs-dismiss="modal">Batal</button>
-                                <button type="submit" class="btn btn-warning fw-bold" style="color: white;">Simpan</button>
+                                <button type="submit" class="btn btn-warning fw-bold">Simpan</button>
                             </div>
                         </form>
                     </div>
@@ -241,7 +238,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" style="color: black" data-bs-dismiss="modal">Batal</button>
-                                <button type="submit" class="btn btn-warning fw-bold" style="color: white;">Simpan</button>
+                                <button type="submit" class="btn btn-warning fw-bold">Simpan</button>
                             </div>
                         </form>
                     </div>

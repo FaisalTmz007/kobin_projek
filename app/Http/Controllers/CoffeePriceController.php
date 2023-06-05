@@ -10,6 +10,22 @@ use Illuminate\Support\Facades\Auth;
 
 class CoffeePriceController extends Controller
 {
+    public function convertToRupiah($valueInCents)
+    {
+        $exchangeRate = 14400; // Assume exchange rate: 1 USD = 14,400 IDR
+
+        // Convert the valueInCents to a numeric value using floatval or intval
+        $cents = floatval($valueInCents); // or intval($valueInCents)
+
+        $valueInRupiah = $cents * $exchangeRate;
+
+        // Round the value to 2 decimal places
+        $roundedValue = round($valueInRupiah, 2);
+
+        return $roundedValue;
+    }
+
+
     public function getPrice()
     {
         // dd(Auth::guard('supplier')->user()->premium);
@@ -19,19 +35,25 @@ class CoffeePriceController extends Controller
             // dd($premium);
         
             $response = Http::get('https://www.alphavantage.co/query?function=COFFEE&interval=monthly&apikey=971FIL70FW6RX7EC')->json();
-        
-            $data = collect($response['data']); // Mengubah array menjadi koleksi (Collection)
-            $currentPage = Paginator::resolveCurrentPage(); // Mengambil halaman saat ini
-        
-            // Membagi koleksi menjadi beberapa halaman
-            $perPage = 25; // Jumlah data per halaman
+
+            $data = collect($response['data']);
+
+            // Iterate over the data and convert the value to Rupiah
+            $data = $data->map(function ($item) {
+                $valueInCents = $item['value'];
+                $valueInRupiah = $this->convertToRupiah($valueInCents);
+                $formattedValue = 'Rp. ' . number_format($valueInRupiah, 2, ',', '.') . '/pound';
+                $item['value'] = $formattedValue;
+
+                return $item;
+            });
+
+            $currentPage = Paginator::resolveCurrentPage();
+            $perPage = 25;
             $items = $data->slice(($currentPage - 1) * $perPage, $perPage)->all();
-            // $paginatedData = new Paginator($items, $perPage, $currentPage);
             $paginatedData = new LengthAwarePaginator($items, count($data), $perPage, $currentPage);
             $paginatedData->setPath(url()->current());
-                
-        
-            // return $paginatedData;
+
             return view('user.harga-kopi', ['data' => $paginatedData, 'count' => count($data)]);
         }
         else {

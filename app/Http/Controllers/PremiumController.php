@@ -78,7 +78,8 @@ class PremiumController extends Controller
             ]);
         }
         $premium->save();
-        return view('user/premium/done')->with('success', 'Berhasil mengirim bukti pembayaran');
+        return redirect()->route('harga-kopi')->with('bukti', 'Bukti terkirim, tunggu verifikasi oleh admin');
+        // return view('user/premium/done')->with('success', 'Berhasil mengirim bukti pembayaran');
     }
 
     /**
@@ -158,7 +159,7 @@ class PremiumController extends Controller
 
         // dd($merge);
 
-        return view('admin/premium', ['merge' => $merge]);
+        return back()->with(compact('merge'))->with('success', 'Refund terkonfirmasi');
         // return 'Halo';
     }
 
@@ -187,7 +188,7 @@ class PremiumController extends Controller
 
             // dd($merge);
 
-            return view('admin/premium', ['merge' => $merge]);
+            return back()->with(compact('merge'))->with('success', 'Pembayaran terkonfirmasi');
         }
         elseif (isset($supplier)) {
             // ubah status transaksi
@@ -201,7 +202,7 @@ class PremiumController extends Controller
 
             // dd($merge);
 
-            return view('admin/premium', ['merge' => $merge]);
+            return back()->with(compact('merge'))->with('success', 'Pembayaran terkonfirmasi');
         }
     }
 
@@ -249,8 +250,8 @@ class PremiumController extends Controller
             $merge = $transaksiOwner->merge($transaksiSupplier);
 
             // dd($merge);
-
-            return view('admin/deactive-premium', ['merge' => $merge]);
+            return back()->with(compact('merge'))->with('success', 'Berhasil menonaktifkan paket');
+            // return view('admin/deactive-premium', ['merge' => $merge]);
         }
         elseif (isset($supplier)) {
             // ubah status transaksi
@@ -266,8 +267,8 @@ class PremiumController extends Controller
             $merge = $transaksiOwner->merge($transaksiSupplier);
 
             // dd($merge);
-
-            return view('admin/deactive-premium', ['merge' => $merge]);
+            return back()->with(compact('merge'))->with('success', 'Berhasil menonaktifkan paket');
+            // return view('admin/deactive-premium', ['merge' => $merge]);
         }
     }
 

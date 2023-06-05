@@ -75,24 +75,26 @@ class ProfileController extends Controller
         if (Auth::guard('owner')->check()) {
             #Match The Old Password
             if(!Hash::check($request->old_password, auth('owner')->user()->password)){
-                return back()->with("error", "Old Password Doesn't match!");
+                return back()->with("error", "Terjadi kesalahan, mohon isi kembali.");
             }
             // dd('halo');
             #Update the new Password
             Owner::where('id_owner', auth('owner')->user()->id_owner)->update(['password' => Hash::make($request->new_password)]);
 
 
-            return back()->with('success', 'Password Changed!');
+            // return back()->with('success', 'Password Changed!');
+            return redirect()->intended('user/profile')->with('success', 'Data berhasil disimpan.');
         } elseif(Auth::guard('supplier')->check()) {
             #Match The Old Password
             if(!Hash::check($request->old_password, auth('supplier')->user()->password)){
-                return back()->with("error", "Old Password Doesn't match!");
+                return back()->with("error", "Terjadi kesalahan, mohon isi kembali.");
             }
             // dd('halo');
             #Update the new Password
             Supplier::where('id_supplier', auth('supplier')->user()->id_supplier)->update(['password' => Hash::make($request->new_password)]);
 
-            return back()->with('success', 'Password Changed!');
+            // return back()->with('success', 'Password Changed!');
+            return redirect()->intended('user/profile')->with('success', 'Data berhasil disimpan.');
         }
 
         

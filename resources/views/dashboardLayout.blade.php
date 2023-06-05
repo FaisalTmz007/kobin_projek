@@ -229,6 +229,9 @@
           <div class="container-xl">
             <div class="row g-2 align-items-center">
               <div class="col">
+				@if(session('bukti'))
+					<p class="alert alert-success">{{ session('bukti') }}</p>
+				@endif
                 <!-- Page pre-title -->
                 @yield('top-nav')
               </div>

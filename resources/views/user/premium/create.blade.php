@@ -65,7 +65,7 @@
                     </div>
                     @endif
                     <div class="d-flex flex-row justify-content-between">
-                        <a href="{{ url()->previous() }}" class="btn btn-default mt-2">Back</a>
+                        <a href="{{ url()->previous() }}" class="btn btn-default mt-2">Batal</a>
                         <button type="submit" class="btn btn-warning mt-2">Kirim</button>
                     </div>
                 </form>

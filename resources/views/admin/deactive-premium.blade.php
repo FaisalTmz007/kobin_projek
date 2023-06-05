@@ -84,6 +84,9 @@
                 </div>
             </div>
         </nav>
+        @if(session('success'))
+        <p class="alert alert-success">{{ session('success') }}</p>
+        @endif
         <div class="container d-flex flex-column justify-content-around align-items-center mt-5">
             <div class="d-flex justify-content-evenly w-100 mb-4">
                 <div class="button-navigation">
@@ -108,7 +111,10 @@
                           <tr>
                             <th scope="col">No.</th>
                             <th scope="col">Username</th>
-                            <th scope="col">Tanggal Pengajuan</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Jenis Paket</th>
+                            <th scope="col">Tanggal Aktif</th>
+                            <th scope="col">Tanggal Tenggat</th>
                             <th scope="col">Aksi</th>
                           </tr>
                         </thead>
@@ -118,9 +124,18 @@
                                 @continue;
                             @endif
                             <tr>
-                              <th scope="row">{{$loop->iteration-1}}</th>
+                              <th scope="row">{{$loop->iteration}}</th>
                               <td>{{$transaksi->username}}</td>
-                              <td>{{$transaksi->created_at}}</td>
+                              @if ($transaksi->premium == 1)
+                              <td>{{'Premium'}}</td>
+                              @endif
+                              <td>{{$transaksi->fk_jenis_paket}}</td>
+                              <td>{{ \Carbon\Carbon::parse($transaksi->updated_at)->format('Y-m-d') }}</td>
+                              @if ($transaksi->fk_jenis_paket == 2)
+                              <td>{{ \Carbon\Carbon::parse($transaksi->updated_at)->addMonths(12)->format('Y-m-d') }}</td>
+                              @else
+                              <td>{{ \Carbon\Carbon::parse($transaksi->updated_at)->addMonths(1)->format('Y-m-d') }}</td>
+                              @endif
                               <td>
                                 @if ($transaksi->fk_supplier == 1)
                                 <form action="{{ url('admin/premium/owner/deactive/'.$transaksi->fk_owner) }}" method="POST" class="d-inline">

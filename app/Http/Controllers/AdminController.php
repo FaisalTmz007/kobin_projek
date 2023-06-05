@@ -17,17 +17,20 @@ class AdminController extends Controller
         $credentials = $request->validate([
             'username' => ['required'],
             'password' => ['required'],
+        ], [
+            'username.required' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
+            'password.required' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
         ]);
  
         if (Auth::guard('admin')->attempt($credentials)) {
             $request->session()->regenerate();
             // dd($request->all());
-            return redirect()->intended('admin/home');
+            return redirect()->intended('admin/home')->with('success', 'Berhasil Login Sebagai Admin');;
         }
         // dd($request->all());
  
         return back()->withErrors([
-            'username' => 'The provided credentials do not match our records.',
+            'username' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
         ])->onlyInput('username');
     }
 

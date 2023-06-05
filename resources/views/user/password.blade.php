@@ -47,7 +47,8 @@
                         <label>Konfirmasi Password Baru<span class="text-danger"></span></label>
                         <input class="form-control" name="new_password_confirmation" type="password" required>
                     </div>
-                    <div class="mb-3 d-flex justify-content-end">
+                    <div class="mt-2 mb-2 d-flex justify-content-between align-items">
+                        <a href="{{ url()->previous() }}" class="btn btn-default mt-2">Batal</a>
                         <button class="btn btn-warning">Ganti Password</button>
                     </div>
                 </form>

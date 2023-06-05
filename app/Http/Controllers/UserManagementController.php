@@ -19,34 +19,32 @@ class UserManagementController extends Controller
         return view('admin/ownerManagement');
     }
 
-    public function getOwner(Request $request){
+    public function getOwner(Request $request)
+    {
         if ($request->has('cari')) {
-            # code...
-            $owners = Owner::where('username', 'LIKE', '%' .$request->cari.'%')->get();
-
-            // dd($owners);
+            $owners = Owner::where('username', 'LIKE', '%' . $request->cari . '%')
+                ->where('username', '!=', 'NULL')
+                ->get();
         } else {
-            # code...
-            $owners = Owner::all();
+            $owners = Owner::where('username', '!=', 'NULL')->get();
         }
-        // dd($owners);
-        return view('admin/ownerManagement')->with(['owners' => $owners]);
+
+        return view('admin/ownerManagement', ['owners' => $owners]);
     }
 
-    public function getSupplier(Request $request){
-        if ($request->has('cari')) {
-            # code...
-            $suppliers = Supplier::where('username', 'LIKE', '%' .$request->cari.'%')->get();
 
-            // dd($owners);
-            // dd($suppliers);
+    public function getSupplier(Request $request)
+    {
+        if ($request->has('cari')) {
+            $suppliers = Supplier::where('username', 'LIKE', '%' . $request->cari . '%')
+                ->where('username', '!=', 'NULL')
+                ->get();
         } else {
-            # code...
-            $suppliers = Supplier::all();
+            $suppliers = Supplier::where('username', '!=', 'NULL')->get();
         }
         // dd($owners);
         // dd($suppliers);
-        return view('admin/supplierManagement')->with(['suppliers' => $suppliers]);
+        return view('admin/supplierManagement', ['suppliers' => $suppliers]);
     }
 
     // Edit
@@ -71,7 +69,7 @@ class UserManagementController extends Controller
             // dd($data);
             
             Owner::where('id_owner', $id)->update(['name'=> $data['name'], 'username'=>$data['username'], 'telp'=>$data['telp'], 'alamat'=>$data['alamat'], 'gambar' => $request->$gambar = 'uploads/mahasiswa/'.$new_gambar,]);
-            return redirect()->back()->with('edit', 'Berhasil mengubah data');
+            return redirect()->back()->with('success', 'Data berhasil diubah.');
         }
     }
 
@@ -85,7 +83,7 @@ class UserManagementController extends Controller
 
             // dd($data);            
             Owner::where('id_owner', $id)->update(['password'=> Hash::make($data['password'])]);
-            return redirect()->back()->with('password', 'Berhasil mereset password');
+            return redirect()->back()->with('success', 'Password berhasil diubah.');
         }
     }
 
@@ -110,8 +108,9 @@ class UserManagementController extends Controller
             // dd($data);
             
             Supplier::where('id_supplier', $id)->update(['name'=> $data['name'], 'username'=>$data['username'], 'telp'=>$data['telp'], 'alamat'=>$data['alamat'], 'gambar' => $request->$gambar = 'uploads/mahasiswa/'.$new_gambar,]);
-            return redirect()->back()->with('edit', 'Berhasil mengubah data');
+            return redirect()->back()->with('success', 'Data berhasil diubah.');
         }
+        
     }
 
     public function passwordSupplier(Request $request, $id) {
@@ -124,10 +123,11 @@ class UserManagementController extends Controller
 
             // dd($data);            
             Supplier::where('id_supplier', $id)->update(['password'=> Hash::make($data['password'])]);
-            return redirect()->back()->with('password', 'Berhasil mereset password');
+            return redirect()->back()->with('success', 'Password berhasil diubah.');
         }
     }
     
+    // ga dipake
     public function createReset(Request $request) {
         $request->validate([
             'username' => 'required',

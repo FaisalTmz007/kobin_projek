@@ -95,7 +95,7 @@ class KasController extends Controller
             ]);
         }
         $kas->save();
-        return redirect()->route('kas.index')->with('success', 'Berhasil menambahkan data');
+        return redirect()->route('kas.index')->with('success', 'Data kas berhasil ditambah');
     }
 
     /**
@@ -172,7 +172,7 @@ class KasController extends Controller
             ]);
         }
         Kas::where('id', $id)->update($kas->toArray());
-        return redirect()->to('user/kas')->with('success', 'Berhasil mengubah data');
+        return redirect()->to('user/kas')->with('success', 'Data berhasil diubah');
     }
 
     /**

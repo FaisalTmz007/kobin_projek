@@ -14,7 +14,7 @@
             @csrf
             <div class="input-group">
                 <input type="search" name="search" class="form-control rounded" placeholder="Cari Pengguna" aria-label="Search" aria-describedby="search-addon" />
-                <button type="button" class="btn btn-outline-warning">Cari</button>
+                <button type="submit" class="btn btn-outline-warning">Cari</button>
             </div>
         </form>
     </div>

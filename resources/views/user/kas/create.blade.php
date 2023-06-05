@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div class=" mb-4 mx-4 d-flex justify-content-between align-items">
-                <a href="{{ url()->previous() }}" class="btn btn-default">Back</a>
+                <a href="{{ url()->previous() }}" class="btn btn-default">Batal</a>
                 <button type="submit" class="btn btn-warning">Simpan</button>
             </div>
         </div>

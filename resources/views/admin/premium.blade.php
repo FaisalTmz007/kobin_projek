@@ -84,10 +84,10 @@
                 </div>
             </div>
         </nav>
+        @if(session('success'))
+        <p class="alert alert-success">{{ session('success') }}</p>
+        @endif
         <div class="container d-flex flex-column justify-content-around align-items-center mt-5">
-            @if(session('success'))
-            <p class="alert alert-success">{{ session('success') }}</p>
-            @endif
             <div class="d-flex justify-content-evenly w-100 mb-4">
                 <div class="button-navigation">
                     <a href="{{ route('premium-manager') }}">
@@ -111,7 +111,7 @@
                           <tr>
                             <th scope="col">No.</th>
                             <th scope="col">Username</th>
-                            <th scope="col">Tanggal Pengajuan</th>
+                            <th scope="col">Jenis Paket</th>
                             <th scope="col">Bukti</th>
                             <th scope="col">Aksi</th>
                           </tr>
@@ -122,9 +122,9 @@
                                 @continue;
                             @endif
                             <tr>
-                              <th scope="row">{{$loop->iteration-1}}</th>
+                              <th scope="row">{{$loop->iteration}}</th>
                               <td>{{$transaksi->username}}</td>
-                              <td>{{$transaksi->created_at}}</td>
+                              <td>{{$transaksi->fk_jenis_paket}}</td>
                               <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-{{$transaksi->id}}">
                                 Bukti Pembayaran
                               </button></td>

@@ -16,22 +16,22 @@
         @csrf
         <div class="form-row w-100">
             <div class="col-lg-7 w-100">
-                <input class="form-control my-3 p-2" placeholder="Nama" name="name" type="text" value="{{ old('name') }}" required>
+                <input class="form-control my-3 p-2" placeholder="Nama" name="name" type="text" value="{{ old('name') }}">
             </div>
         </div>
         <div class="form-row w-100">
             <div class="col-lg-7 w-100">
-                <input class="form-control my-3 p-2" placeholder="Username" name="username" type="text" value="{{ old('username') }}" required>
+                <input class="form-control my-3 p-2" placeholder="Username" name="username" type="text" value="{{ old('username') }}">
             </div>
         </div>
         <div class="form-row w-100">
             <div class="col-lg-7 w-100">
-                <input class="form-control my-3 p-2" placeholder="Nomor Telepon" name="telp" type="text" value="{{ old('telp') }}" required>
+                <input class="form-control my-3 p-2" placeholder="Nomor Telepon" name="telp" type="text" value="{{ old('telp') }}">
             </div>
         </div>
         <div class="form-row w-100">
             <div class="col-lg-7 w-100">
-                <input class="form-control my-3 p-2" placeholder="Alamat" name="alamat" type="text" value="{{ old('alamat') }}" required>
+                <input class="form-control my-3 p-2" placeholder="Alamat" name="alamat" type="text" value="{{ old('alamat') }}">
             </div>
         </div>
         <div class="form-row w-100">
@@ -46,13 +46,13 @@
         <div class="form-row w-100">
             <div class="col-lg-7 w-100">
                 {{-- <input class="form-control my-3 p-2" placeholder="******" name="password" type="password"> --}}
-                <input class="form-control my-3 p-2" placeholder="Password" name="password" type="password" required>
+                <input class="form-control my-3 p-2" placeholder="Password" name="password" type="password">
             </div>
         </div>
         <div class="form-row w-100">
             <div class="col-lg-7 w-100">
                 {{-- <input class="form-control my-3 p-2" placeholder="******" name="password" type="password"> --}}
-                <input class="form-control my-3 p-2" value="{{ old('gambar') }}" name="gambar" id="gambar" type="file" accept="image/*" required onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
+                <input class="form-control my-3 p-2" value="{{ old('gambar') }}" name="gambar" id="gambar" type="file" accept="image/*" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
             </div>
             <div class="col-lg-7">
                 <img class="mb-3" src="" id="output" width="150">

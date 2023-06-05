@@ -22,13 +22,13 @@
         @csrf
         <div class="form-row w-100">
             <div class="col-lg-7 w-100">
-                <input class="form-control my-3 p-2" placeholder="Username" name="username" type="text" value="{{ old('username') }}" required>
+                <input class="form-control my-3 p-2" placeholder="Username" name="username" type="text" value="{{ old('username') }}">
             </div>
         </div>
         <div class="form-row w-100">
             <div class="col-lg-7 w-100">
                 {{-- <input class="form-control my-3 p-2" placeholder="******" name="password" type="password"> --}}
-                <input class="form-control my-3 p-2" placeholder="Password" name="password" type="password" required>
+                <input class="form-control my-3 p-2" placeholder="Password" name="password" type="password">
             </div>
         </div>
         <div class="form-row w-100">
@@ -41,7 +41,7 @@
                 <p style="text-align: center">Belum punya akun? <a style="text-decoration: none; color: #DA7B29" href="{{ route('register_user') }}"><b>Register</b></a></p>
             </div>
             <div>
-                <p style="text-align: center"><a style="text-decoration: none; color: #DA7B29"  href="{{ route('resetPassword') }}">Lupa Password</a></p>
+                {{-- <p style="text-align: center"><a style="text-decoration: none; color: #DA7B29"  href="{{ route('resetPassword') }}">Lupa Password</a></p> --}}
             </div>
         </div>
     </form>

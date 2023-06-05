@@ -29,6 +29,14 @@ class AuthController extends Controller
                 'alamat' => 'required',
                 'role' => 'required',
                 'gambar' => 'required|image|mimes:png,jpg|max:2048'
+            ], [
+                'name.required' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
+                'username.required' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
+                'password.required' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
+                'telp.required' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
+                'alamat.required' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
+                'role.required' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
+                'gambar.required' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
             ]);
 
             $gambar = $request->gambar;
@@ -44,10 +52,18 @@ class AuthController extends Controller
                 'alamat' => $request->alamat,
                 'role' => $request->role,
                 'gambar' => $request->$gambar = 'uploads/mahasiswa/'.$new_gambar,
+            ], [
+                'name.required' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
+                'username.required' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
+                'password.required' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
+                'telp.required' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
+                'alamat.required' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
+                'role.required' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
+                'gambar.required' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
             ]);
             // dd($request->all());
             $owner->save();
-            return redirect()->route('login')->with('success', 'Berhasil registrasi sebagai owner');
+            return redirect()->route('login')->with('success', 'Akun berhasil dibuat.');
         }
         if ($request->role == 3) {
             # code...
@@ -60,6 +76,14 @@ class AuthController extends Controller
                 'alamat' => 'required',
                 'role' => 'required',
                 'gambar' => 'required|image|mimes:png,jpg|max:2048'
+            ], [
+                'name.required' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
+                'username.required' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
+                'password.required' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
+                'telp.required' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
+                'alamat.required' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
+                'role.required' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
+                'gambar.required' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
             ]);
             
             $gambar = $request->gambar;
@@ -77,8 +101,11 @@ class AuthController extends Controller
                 'gambar' => $request->$gambar = 'uploads/mahasiswa/'.$new_gambar,
             ]);
             $supplier->save();
-            return redirect()->route('login')->with('success', 'Berhasil registrasi sebagai supplier');
+            return redirect()->route('login')->with('success', 'Akun berhasil dibuat.');
         }
+        return back()->withErrors([
+            'username' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
+        ]);
     }
 
     public function login(){
@@ -90,22 +117,25 @@ class AuthController extends Controller
         $credentials = $request->validate([
             'username' => ['required'],
             'password' => ['required'],
+        ], [
+            'username.required' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
+            'password.required' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
         ]);
  
         if (Auth::guard('owner')->attempt($credentials)) {
             $request->session()->regenerate();
             // dd($request->all());
-            return redirect()->intended('user/home')->with('loginowner', 'Anda Berhasil Masuk Sebagai Pemilik Kebun');
+            return redirect()->intended('user/home')->with('success', 'Berhasil Login Sebagai User');
         }
 
         if (Auth::guard('supplier')->attempt($credentials)) {
             $request->session()->regenerate();
             // dd($request->all());
-            return redirect()->intended('user/home')->with('loginsupplier', 'Anda Berhasil Masuk Sebagai Supplier');
+            return redirect()->intended('user/home')->with('success', 'Berhasil Login Sebagai User');
         }
  
         return back()->withErrors([
-            'username' => 'The provided credentials do not match our records.',
+            'username' => 'Kesalahan pengisian form untuk mengisi kembali form yang salah.',
         ])->onlyInput('username');
     }
 

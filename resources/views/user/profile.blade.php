@@ -9,8 +9,8 @@
 @endsection
 
 @section('top-nav')
-    @if (session('edit'))
-        <p class="alert alert-success">{{session('edit')}}</p>
+    @if (session('success'))
+        <p class="alert alert-success">{{session('success')}}</p>
     @endif
     @if ($errors->any())
         @foreach ($errors->all() as $err)

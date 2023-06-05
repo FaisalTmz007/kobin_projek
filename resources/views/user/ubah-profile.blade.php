@@ -5,6 +5,9 @@
 @endsection
 
 @section('top-nav')
+    @if(session('success'))
+        <p class="alert alert-success">{{ session('success') }}</p>
+    @endif
     @if ($errors->any())
         @foreach ($errors->all() as $err)
           <p class="alert alert-danger">{{ $err }}</p>
@@ -57,7 +60,7 @@
                     </div>
                 </div>
                 <div class="mt-4 mb-2 d-flex justify-content-between align-items">
-                    <a href="{{ url()->previous() }}" class="btn btn-default mt-2">Back</a>
+                    <a href="{{ url()->previous() }}" class="btn btn-default mt-2">Batal</a>
                     <button type="submit" class="btn btn-warning">Simpan</button>
                 </div>
             </form>
@@ -94,7 +97,7 @@
                     </div>
                 </div>
                 <div class="mt-2 mb-2 d-flex justify-content-between align-items">
-                    <a href="{{ url()->previous() }}" class="btn btn-default mt-2">Back</a>
+                    <a href="{{ url()->previous() }}" class="btn btn-default mt-2">Batal</a>
                     <button type="submit" class="btn btn-warning">Simpan</button>
                 </div>
             </form>
